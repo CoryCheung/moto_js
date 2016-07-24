@@ -1,0 +1,67 @@
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+
+<!-- 导航条 -->
+<div class="bg-white bread-crumb">
+    <ul class="breadcrumb b-a m-b-n-xs lter b-b wrapper-md">
+        <li><a ui-sref="main"><i class="fa fa-home"></i> 首页</a></li>
+        <li><a ui-sref="main.bus.prdct.list">商品信息管理</a></li>
+        <li class="active" ng-bind="title"></li>
+    </ul>
+</div>
+
+<!-- 内容区域 -->
+<div class="wrapper-md content">
+    <div class="panel panel-default">
+        <!-- 头部 -->
+        <div class="panel-heading font-bold">{{title}}
+            <a class="btn btn-sm btn-icon btn-rounded btn-default pull-right m-t-n-xs" ui-sref="main.bus.prdct.list"><i
+                    class="text-md fa fa-times text-muted"></i></a>
+        </div>
+        <!--表单-->
+        <div class="panel-body">
+            <form class="form-horizontal" name="user_form">
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="productName">
+                        <span class="text-danger wrapper-sm">*</span>商品名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="productName" id="productName"
+                               placeholder="请输入商品名称..." ng-model="record.productName">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="productTwodimecode">
+                        <span class="text-danger wrapper-sm">*</span>商品条形码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="productTwodimecode" id="productTwodimecode"
+                               placeholder="请输入商品条形码..."
+                               ng-model="record.productTwodimecode">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <!--<div class="dropdown" ng-controller="prdctUpdateController">-->
+                    <label class="col-lg-2 col-sm-3 control-label" for="type"><span
+                            class="text-danger wrapper-sm">*</span>商品类型</label>
+                    <div class="col-sm-6" ng-controller="prdctUpdateController">
+                        <select name="type" id="type" ng-model="record.type" class="form-control"
+                                ng-options=" key as value for (key, value) in slctItm">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <!--</div>-->
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <!--btn-->
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-2">
+                        <button type="reset" class="btn btn-default w-xs">重置</button>
+                        <button type="submit" class="btn btn-info w-xs m-l-xl">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

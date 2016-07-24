@@ -1,0 +1,80 @@
+<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+
+<!-- 导航条 -->
+<div class="bg-white bread-crumb">
+    <ul class="breadcrumb b-a m-b-n-xs lter b-b wrapper-md">
+        <li><a ui-sref="main"><i class="fa fa-home"></i> 首页</a></li>
+        <li><a ui-sref="main.bus.prchs.list">采购管理</a></li>
+        <li class="active" ng-bind="title"></li>
+    </ul>
+</div>
+
+<!-- 内容区域 -->
+<div class="wrapper-md content">
+    <div class="panel panel-default">
+        <!-- 头部 -->
+        <div class="panel-heading font-bold">{{title}}
+            <a class="btn btn-sm btn-icon btn-rounded btn-default pull-right m-t-n-xs" ui-sref="main.bus.prchs.list"><i
+                    class="text-md fa fa-times text-muted"></i></a>
+        </div>
+        <!--表单-->
+        <div class="panel-body">
+            <form class="form-horizontal" name="user_form">
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="productId">
+                        <span class="text-danger wrapper-sm">*</span>商品名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="productId" id="productId"
+                               placeholder="请输入productId..." ng-model="record.productId">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="count">
+                        <span class="text-danger wrapper-sm">*</span>商品数量</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="count" id="count" placeholder="请输入商品数量..."
+                               ng-model="record.count">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="purchasePrice">商品价格</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="purchasePrice" id="purchasePrice"
+                               placeholder="请输入商品价格..." ng-model="record.purchasePrice">
+                        <span class="help-block m-b-none"></span>
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="providerId">
+                        <span class="text-danger wrapper-sm">*</span>providerId</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="providerId" id="providerId"
+                               placeholder="请输入providerId..." ng-model="record.providerId">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-sm-3 control-label" for="userId">
+                        <span class="text-danger wrapper-sm">*</span>userId</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="userId" id="userId"
+                               placeholder="请输入userId..." ng-model="record.userId">
+                    </div>
+                </div>
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <!--btn-->
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-2">
+                        <button type="reset" class="btn btn-default w-xs">重置</button>
+                        <button type="submit" class="btn btn-info w-xs m-l-xl" >保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
