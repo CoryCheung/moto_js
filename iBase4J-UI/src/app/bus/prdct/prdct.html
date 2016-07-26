@@ -60,7 +60,7 @@
                             <span ng-show="item.enable==1" class="text-success">启用</span>
                         </td>
                         <td class="v-middle">
-                            <a ui-sref="main.bus.prdct.update({mydata:item.id})" class="btn btn-sm btn-default" ng-click="change(item)">
+                            <a ui-sref="main.bus.prdct.update({id:item.id})" class="btn btn-sm btn-default" ng-click="change(item)">
                                 <i class="fa fa-edit m-r-xs text-sm"></i>编辑</a>
                             <button type="button" ng-show="item.enable==1" ng-click="disableItem(item.id,0)"
                                     class="btn btn-sm btn-default m-l-xs">

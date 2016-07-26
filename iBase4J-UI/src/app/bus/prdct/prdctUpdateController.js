@@ -1,13 +1,13 @@
 'use strict';
 var myapp = angular.module('app');
-myapp.controller('prdctUpdateController', ['$scope', '$rootScope', '$state', '$timeout', 'toaster', 'prdctData',
-    function ($scope, $rootScope, $state, $timeout, toaster, prdctData) {
+myapp.controller('prdctUpdateController', ['$scope', '$rootScope', '$state', '$timeout', 'toaster',
+    function ($scope, $rootScope, $state, $timeout, toaster) {
         var title = "";
         var defaultAva = $rootScope.defaultAvatar;
         $scope.myImage = '';
         // $scope.myCroppedImage=$scope.myCroppedImage ;
         $scope.myCroppedImage = '';
-        $scope.updateData = prdctData.getUpdateItem();
+        // $scope.updateData = prdctData.getUpdateItem();
         if ($state.includes('**.prdct.update')) {
             title = "编辑商品信息";
             // var obj = $stateParams.mydata;
@@ -25,8 +25,6 @@ myapp.controller('prdctUpdateController', ['$scope', '$rootScope', '$state', '$t
             }, 300);
 
         }
-
-
         $scope.title = $rootScope.title = title;
         $scope.loading = true;
         //初始化验证
@@ -81,12 +79,27 @@ myapp.controller('prdctUpdateController', ['$scope', '$rootScope', '$state', '$t
                 $scope.loading = false;
                 if (result.httpCode == 200) {
                     $scope.slctItm = result.data;
-                    $scope.record=$scope.updateData;
+                    // $scope.record=$scope.updateData;
                 } else {
                     $scope.msg = result.msg;
                 }
                 $scope.$apply();
             });
+            if(!isNaN(id)){
+                $scope.loading = true;
+                $.ajax({
+                    url : '/prdct/read/detail',
+                    data: {'id': id}
+                }).then(function(result) {
+                    $scope.loading = false;
+                    if (result.httpCode == 200) {
+                        $scope.record = result.data;
+                    } else {
+                        $scope.msg = result.msg;
+                    }
+                    $scope.$apply();
+                });
+            }
         }
 
         //表单验证
