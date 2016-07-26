@@ -1,6 +1,6 @@
 'use strict';
 var myapp = angular.module('app');
-myapp.factory('cacheData', function () {
+myapp.factory('prdctData', function () {
     var data = {
         updateItem: ''
     };
@@ -14,8 +14,8 @@ myapp.factory('cacheData', function () {
         }
     };
 });
-myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 'cacheData',
-    function ($rootScope, $scope, $http, $state, cacheData) {
+myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 'prdctData',
+    function ($rootScope, $scope, $http, $state, prdctData) {
         $scope.title = '商品信息管理';
         $scope.param = {};
         $scope.loading = false;
@@ -38,7 +38,7 @@ myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 
         }
         $scope.$watch('updateItem', function (newValue, oldValue) {
             if (newValue !== oldValue) {
-                cachaData.setUpdateItem(newValue);
+                prdctData.setUpdateItem(newValue);
             }
         });
 

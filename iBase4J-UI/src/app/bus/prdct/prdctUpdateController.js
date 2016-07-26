@@ -1,17 +1,17 @@
 'use strict';
 var myapp = angular.module('app');
-myapp.controller('prdctUpdateController', ['$scope', '$stateParams', '$rootScope', '$state', '$timeout', 'toaster', 'cacheData',
-    function ($scope, $stateParams, $rootScope, $state, $timeout, toaster, cacheData) {
+myapp.controller('prdctUpdateController', ['$scope', '$rootScope', '$state', '$timeout', 'toaster', 'prdctData',
+    function ($scope, $rootScope, $state, $timeout, toaster, prdctData) {
         var title = "";
         var defaultAva = $rootScope.defaultAvatar;
         $scope.myImage = '';
         // $scope.myCroppedImage=$scope.myCroppedImage ;
         $scope.myCroppedImage = '';
-        var updateItem = cacheData.getUpdateItem();
+        $scope.updateData = prdctData.getUpdateItem();
         if ($state.includes('**.prdct.update')) {
             title = "编辑商品信息";
-            var obj = $stateParams.mydata;
-            var item = $stateParams.mydata.item;
+            // var obj = $stateParams.mydata;
+            // var item = $stateParams.mydata.item;
             var id = $state.params.id;
             activate(id);
             validate(id);
@@ -73,37 +73,20 @@ myapp.controller('prdctUpdateController', ['$scope', '$stateParams', '$rootScope
 
         // 初始化页面
         function activate(id) {
-            if (id == null) {
-                $scope.loading = true;
-                $.ajax({
-                    url: '/dic/read/key',
-                    data: {'key': 'PRDCT_TYPE'}
-                }).then(function (result) {
-                    $scope.loading = false;
-                    if (result.httpCode == 200) {
-                        $scope.slctItm = result.data;
-
-                    } else {
-                        $scope.msg = result.msg;
-                    }
-                    $scope.$apply();
-                });
-            } else {
-                $scope.loading = true;
-                $.ajax({
-                    url: '/dic/read/key',
-                    data: {'key': 'PRDCT_TYPE'}
-                }).then(function (result) {
-                    $scope.loading = false;
-                    if (result.httpCode == 200) {
-                        $scope.slctItm = result.data;
-                        $scope.record = $state.params;
-                    } else {
-                        $scope.msg = result.msg;
-                    }
-                    $scope.$apply();
-                });
-            }
+            $scope.loading = true;
+            $.ajax({
+                url: '/dic/read/key',
+                data: {'key': 'PRDCT_TYPE'}
+            }).then(function (result) {
+                $scope.loading = false;
+                if (result.httpCode == 200) {
+                    $scope.slctItm = result.data;
+                    $scope.record=$scope.updateData;
+                } else {
+                    $scope.msg = result.msg;
+                }
+                $scope.$apply();
+            });
         }
 
         //表单验证

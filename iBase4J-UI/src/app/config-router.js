@@ -476,8 +476,7 @@ var app = angular.module('app')
                 }
             })
             .state('main.bus.prdct.update', {
-                params:{"mydata":null},
-                url: '/update',
+                url: '/update/{id}?params',
                 templateUrl: 'src/app/bus/prdct/prdctUpdate.html',
                 controller: 'prdctUpdateController',
                 resolve: {
