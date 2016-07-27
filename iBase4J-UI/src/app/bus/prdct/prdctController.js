@@ -1,26 +1,10 @@
 'use strict';
-var myapp = angular.module('app');
-myapp.factory('prdctData', function () {
-    var data = {
-        updateItem: ''
-    };
-
-    return {
-        getUpdateItem: function () {
-            return data.updateItem;
-        },
-        setUpdateItem: function (updateItem) {
-            data.updateItem = updateItem;
-        }
-    };
-});
-myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 'prdctData',
-    function ($rootScope, $scope, $http, $state, prdctData) {
+angular.module('app')
+    .controller('prdctController', ['$rootScope', '$scope', '$http', '$state',
+    function ($rootScope, $scope, $http, $state) {
         $scope.title = '商品信息管理';
         $scope.param = {};
         $scope.loading = false;
-        $scope.updateItem = null;
-
         $scope.search = function () {
             $scope.loading = true;
             $.ajax({
@@ -36,11 +20,6 @@ myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 
                 $scope.$apply();
             });
         }
-        $scope.$watch('updateItem', function (newValue, oldValue) {
-            if (newValue !== oldValue) {
-                prdctData.setUpdateItem(newValue);
-            }
-        });
 
         $scope.search();
 
@@ -57,7 +36,4 @@ myapp.controller('prdctController', ['$rootScope', '$scope', '$http', '$state', 
             $scope.param.pageNum = page;
             $scope.search();
         }
-        $scope.change = function (obj) {
-            $scope.updateItem = obj;
-        };
     }]);
