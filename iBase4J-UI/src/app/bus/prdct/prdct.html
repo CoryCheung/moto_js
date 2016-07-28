@@ -21,47 +21,81 @@
             <div class="panel-heading clearfix">
                 <a ui-sref="main.bus.prdct.create" class="btn btn-info pull-right">
                     <i class="icon-user-follow m-r-sm text-md"></i>添加商品信息</a>
-                <div class="w-lg">
+                <div class="w-full">
                     <form ng-submit="search()" class="ng-pristine ng-valid">
                         <div class="form-group">
-                            <div class="input-group search-box">
-                                <input type="text" class="form-control" ng-model="param.keyword"
-                                       placeholder="商品名称、商品条形码、商品类型"/>
+                            <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy-MM-dd "
+                                 data-link-field="dtp_input1" data-link-format="yyyy-MM-dd" style="float: left;margin-left: 10px">
+                                <input class="form-control" size="16" type="text" value="" ng-model="param.startTime" placeholder="请选择开始时间">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            </div >
+                            <input type="hidden" id="dtp_input1" value=""/>
+                            <div class="input-group date form_date col-md-2"
+                                 data-date="" data-date-format="yyyy-mm-dd "
+                                 data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="float: left;margin-left: 10px">
+                                <input class="form-control" size="16" type="text" value="" ng-model="param.endTime" placeholder="请选择结束时间">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            </div>
+                            <input type="hidden" id="dtp_input2" value=""/>
+                            <div class="input-group search-box col-md-1" style="float: left;margin-left: 10px">
+                                <input type="text" class="form-control" ng-model="param.productName" id="productName"
+                                       placeholder="名称"/>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearProductName()"></span></span>
+                            </div>
+                            <div class="input-group search-box col-md-1" style="float: left;margin-left: 10px">
+                                <input type="text" class="form-control" ng-model="param.productTwodimecode" id="productTwodimecode"
+                                       placeholder="条形码"/>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearProductTwodimecode()"></span></span>
+                            </div>
+                            <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
+                                <select name="type" ng-model="param.type" class="form-control" id="type"
+                                        ng-options=" key as value for (key, value) in slctItm">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
+                                <select name="enable" ng-model="param.enable" class="form-control" id="enable"
+                                        ng-options=" key as value for (key, value) in enableItem">
+                                    <option value="">请选择</option>
+                                </select>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearType()"></span></span>
                                 <i ng-show="user.keyword" ng-click="clearSearch()"
                                    class="fa fa-times-circle text-muted search-clear"></i>
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                <button class="btn btn-default" type="submit"  ><i class="fa fa-search"></i></button>
                             </span>
                             </div>
                         </div>
                     </form>
                 </div>
+
                 <!--<div class="form-group">-->
-                    <!--<label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>-->
-                    <!--<div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">-->
-                        <!--<input class="form-control" size="16" type="text" value="" readonly>-->
-                        <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
-                        <!--<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>-->
-                    <!--</div>-->
-                    <!--<input type="hidden" id="dtp_input1" value="" /><br/>-->
+                <!--<label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>-->
+                <!--<div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">-->
+                <!--<input class="form-control" size="16" type="text" value="" readonly>-->
+                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
+                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>-->
                 <!--</div>-->
-                <div class="form-group">
-                    <label for="dtp_input2" class="col-md-1 control-label">Date Picking</label>
-                    <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy-MM-dd " data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" value="">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <!--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>-->
-                    </div>
-                    <input type="hidden" id="dtp_input2" value="" /><br/>
-                </div>
+                <!--<input type="hidden" id="dtp_input1" value="" /><br/>-->
+                <!--</div>-->
                 <!--<div class="form-group">-->
-                    <!--<label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>-->
-                    <!--<div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">-->
-                        <!--<input class="form-control" size="16" type="text" value="" readonly>-->
+                    <!--<label for="dtp_input2" class="col-md-1 control-label">Date Picking</label>-->
+                    <!--<div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy-MM-dd "-->
+                         <!--data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">-->
+                        <!--<input class="form-control" size="16" type="text" value="" placeholder="请选择开始时间">-->
                         <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
-                        <!--<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>-->
+                        <!--&lt;!&ndash;<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>&ndash;&gt;-->
                     <!--</div>-->
-                    <!--<input type="hidden" id="dtp_input3" value="" /><br/>-->
+                    <!--<input type="hidden" id="dtp_input2" value=""/><br/>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                <!--<label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>-->
+                <!--<div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">-->
+                <!--<input class="form-control" size="16" type="text" value="" readonly>-->
+                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
+                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>-->
+                <!--</div>-->
+                <!--<input type="hidden" id="dtp_input3" value="" /><br/>-->
                 <!--</div>-->
             </div>
 
@@ -119,35 +153,36 @@
         charset="UTF-8"></script>
 
 <script type="text/javascript">
-//    $('.form_datetime').datetimepicker({
+    //    $('.form_datetime').datetimepicker({
+    //        language: 'zh-CN',
+    //        weekStart: 1,
+    //        todayBtn: 1,
+    //        autoclose: 1,
+    //        todayHighlight: 1,
+    //        startView: 2,
+    //        forceParse: 0,
+    //        showMeridian: 1
+    //    });
+//    $('.form_date').datetimepicker({
 //        language: 'zh-CN',
 //        weekStart: 1,
 //        todayBtn: 1,
 //        autoclose: 1,
 //        todayHighlight: 1,
 //        startView: 2,
+//        minView: 2,
 //        forceParse: 0,
-//        showMeridian: 1
+//        format: "yyyy-mm-dd" //选择日期后，文本框显示的日期格式
 //    });
-    $('.form_date').datetimepicker({
-        language: 'zh-CN',
-        weekStart: 1,
-        todayBtn: 1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
-    });
-//    $('.form_time').datetimepicker({
-//        language: 'zh-CN',
-//        weekStart: 1,
-//        todayBtn: 1,
-//        autoclose: 1,
-//        todayHighlight: 1,
-//        startView: 1,
-//        minView: 0,
-//        maxView: 1,
-//        forceParse: 0
-//    });
+    //    $('.form_time').datetimepicker({
+    //        language: 'zh-CN',
+    //        weekStart: 1,
+    //        todayBtn: 1,
+    //        autoclose: 1,
+    //        todayHighlight: 1,
+    //        startView: 1,
+    //        minView: 0,
+    //        maxView: 1,
+    //        forceParse: 0
+    //    });
 </script>
