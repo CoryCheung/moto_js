@@ -459,7 +459,9 @@ var app = angular.module('app')
 
                 resolve: {
                     deps: ['uiLoad', '$ocLazyLoad', function (uiLoad, $ocLazyLoad) {
-                        return uiLoad.load('src/app/bus/prdct/prdctController.js');
+                        return uiLoad.load('src/app/bus/prdct/prdctController.js').then(function () {
+                            return $ocLazyLoad.load('toaster');
+                        });
                     }]
                 }
             })

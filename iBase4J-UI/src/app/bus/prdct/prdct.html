@@ -21,7 +21,7 @@
             <div class="panel-heading clearfix">
                 <a ui-sref="main.bus.prdct.create" class="btn btn-info pull-right">
                     <i class="icon-user-follow m-r-sm text-md"></i>添加商品信息</a>
-                <div class="w-full">
+                <div class="w-auto">
                     <form ng-submit="search()" class="ng-pristine ng-valid">
                         <div class="form-group">
                             <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy-MM-dd "
@@ -37,32 +37,35 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             </div>
                             <input type="hidden" id="dtp_input2" value=""/>
-                            <div class="input-group search-box col-md-1" style="float: left;margin-left: 10px">
+                            <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
                                 <input type="text" class="form-control" ng-model="param.productName" id="productName"
-                                       placeholder="名称"/>
+                                       placeholder="请输入商品名称"/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearProductName()"></span></span>
                             </div>
-                            <div class="input-group search-box col-md-1" style="float: left;margin-left: 10px">
+                            <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
                                 <input type="text" class="form-control" ng-model="param.productTwodimecode" id="productTwodimecode"
-                                       placeholder="条形码"/>
+                                       placeholder="请输入商品条形码"/>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearProductTwodimecode()"></span></span>
                             </div>
                             <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
                                 <select name="type" ng-model="param.type" class="form-control" id="type"
                                         ng-options=" key as value for (key, value) in slctItm">
-                                    <option value="">请选择</option>
+                                    <option value="">请选择商品类型</option>
                                 </select>
                             </div>
                             <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
                                 <select name="enable" ng-model="param.enable" class="form-control" id="enable"
                                         ng-options=" key as value for (key, value) in enableItem">
-                                    <option value="">请选择</option>
+                                    <option value="">请选择启用状态</option>
                                 </select>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove" ng-click="clearType()"></span></span>
+
+                            </div>
+                            <div class="input-group search-box col-md-2" style="float: left;margin-left: 10px">
                                 <i ng-show="user.keyword" ng-click="clearSearch()"
                                    class="fa fa-times-circle text-muted search-clear"></i>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit"  ><i class="fa fa-search"></i></button>
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" name="点击查询" ><i class="fa fa-search">点击查询</i></button>
                             </span>
                             </div>
                         </div>
@@ -125,16 +128,13 @@
                         <td class="v-middle">
                             <a ui-sref="main.bus.prdct.update({id:item.id})" class="btn btn-sm btn-default">
                                 <i class="fa fa-edit m-r-xs text-sm"></i>编辑</a>
-                            <button type="button" ng-show="item.enable==1" ng-click="disableItem(item.id,0)"
+                            <button type="button" ng-show="item.enable==1" ng-click="disableItem(item,0)"
                                     class="btn btn-sm btn-default m-l-xs">
                                 <i class="fa fa-ban m-r-xs text-sm"></i>禁用
                             </button>
-                            <button type="button" ng-hide="item.enable==1" ng-click="disableItem(item.id,1)"
+                            <button type="button" ng-hide="item.enable==1" ng-click="disableItem(item,1)"
                                     class="btn btn-sm btn-default m-l-xs">
                                 <i class="fa fa-check m-r-xs text-sm"></i>启用
-                            </button>
-                            <button type="button" class="btn btn-sm btn-default m-l-xs" disabled="disabled">
-                                <i class="fa fui-power m-r-xs text-sm"></i>权限
                             </button>
                         </td>
                     </tr>
