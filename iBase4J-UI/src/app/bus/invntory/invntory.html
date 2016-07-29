@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <!-- 头部 -->
             <div class="panel-heading clearfix">
-                <a ui-sref="main.sys.user.create" class="btn btn-info pull-right">
+                <a ui-sref="main.bus.prdct.create" class="btn btn-info pull-right">
                     <i class="icon-user-follow m-r-sm text-md"></i>商品入库</a>
                 <div class="w-lg">
                     <form ng-submit="search()" class="ng-pristine ng-valid">
@@ -52,9 +52,9 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in pageInfo.list">
-                        <td><img class="thumb-lg" ng-src="{{item.avatar || defaultAvatar}}" /></td>
-                        <td class="v-middle">{{item.account}}</td>
-                        <td class="v-middle">{{item.userName}}</td>
+                        <td class="v-middle">{{item.productName}}</td>
+                        <td class="v-middle">{{item.count}}</td>
+                        <td class="v-middle">{{item.inTime}}</td>
                         <td class="v-middle">{{item.phone}}</td>
                         <td class="v-middle">{{item.deptName}}</td>
                         <td class="v-middle">{{item.userTypeText}}</td>

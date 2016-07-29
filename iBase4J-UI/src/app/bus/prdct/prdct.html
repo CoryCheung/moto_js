@@ -128,11 +128,11 @@
                         <td class="v-middle">
                             <a ui-sref="main.bus.prdct.update({id:item.id})" class="btn btn-sm btn-default">
                                 <i class="fa fa-edit m-r-xs text-sm"></i>编辑</a>
-                            <button type="button" ng-show="item.enable==1" ng-click="disableItem(item,0)"
+                            <button type="button" ng-show="item.enable==1" ng-click="disableItem(item,false)"
                                     class="btn btn-sm btn-default m-l-xs">
                                 <i class="fa fa-ban m-r-xs text-sm"></i>禁用
                             </button>
-                            <button type="button" ng-hide="item.enable==1" ng-click="disableItem(item,1)"
+                            <button type="button" ng-hide="item.enable==1" ng-click="disableItem(item,true)"
                                     class="btn btn-sm btn-default m-l-xs">
                                 <i class="fa fa-check m-r-xs text-sm"></i>启用
                             </button>

@@ -104,23 +104,30 @@ angular.module('app')
             function validate() {
                 jQuery('form').validate({
                     rules: {
-                        // deptName: {
-                        //     required: true,
-                        //     stringCheck:[],
-                        //     maxLengthB:[20]
-                        // },
-                        // sortNo: {
-                        //     required: true
-                        // }
+                        productName: {
+                            required: true
+                            // ,
+                            // stringCheck:[],
+                            // maxLengthB:[20]
+                        },
+                        productTwodimecode: {
+                            required: true
+                        },
+                        type: {
+                            required: true
+                        }
                     },
                     messages: {
-                        // deptName: {
-                        //     required: '请填写部门名称',
-                        //     maxLengthB:"部门名称不得超过{0}个字符"
-                        // },
-                        // sortNo: {
-                        //     required: '请填写排序'
-                        // }
+                        productName: {
+                            required: '请填写商品名称'
+                            // maxLengthB:"部门名称不得超过{0}个字符"
+                        },
+                        productTwodimecode: {
+                            required: '请填写商品条形码'
+                        },
+                        type: {
+                            required: '请选择商品类型'
+                        }
                     },
                     submitHandler: function () {
                         $scope.submit();
